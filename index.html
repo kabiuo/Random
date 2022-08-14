@@ -25,11 +25,9 @@
 		</style>
 	</head>
 	<body>
-		<input id="openfile" type='file' accept='text/plain' onchange='openFile(event)'>
-                <button type="button" class="btn btn-outline-primary btn-lg" onclick="openFile(/歌单.txt)">加载默认歌单</button>
-                <br>
-		
-		
+		<input id="openfile" type='file' accept='text/plain' onchange='openFile(event)'><br>
+
+
 		<div class="container-full">
 			<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
 				<div id="output"></div>
@@ -57,17 +55,145 @@
 			var btn = document.getElementById("btn");
 			//显示文本
 			var res = document.getElementById("res");
-			
+
 			var output = document.getElementById("output");
 			var openfile = document.getElementById("openfile");
 			//文本源
-			var student = []
+			var student = [
+				"微尘（原创）",
+				"指望",
+				"值得",
+				"征服",
+				"不换",
+				"阴天",
+				"遗憾",
+				"好听",
+				"演员",
+				"烟火",
+				"笑纳",
+				"撕夜",
+				"失踪",
+				"成都",
+				"出界",
+				"荡漾",
+				"嘉宾",
+				"甘愿",
+				"红豆",
+				"借我",
+				"后来",
+				"如愿",
+				"剪爱",
+				"空空",
+				"流年",
+				"念念",
+				"像鱼",
+				"暖暖",
+				"飘雪",
+				"小小",
+				"唯一",
+				"用情",
+				"趁早",
+				"旧词",
+				"归来",
+				"氧气",
+				"年轮",
+				"小半",
+				"体面",
+				"笔记",
+				"太阳",
+				"怎样",
+				"遇见",
+				"梦醒了",
+				"再回首",
+				"月半弯",
+				"独角戏",
+				"红玫瑰",
+				"记事本",
+				"没时间",
+				"日不落",
+				"无底洞",
+				"夜太黑",
+				"梦一场",
+				"空白格",
+				"美丽心情",
+				"烟雨行舟",
+				"路过人间",
+				"不醉不会",
+				"眼泪成诗",
+				"爱的可能",
+				"当你老了",
+				"一次就好",
+				"往事随风",
+				"独家记忆",
+				"光的方向",
+				"忽然之间",
+				"开始懂了",
+				"哭泣游戏",
+				"一生所爱",
+				"第三人称",
+				"凌晨三点",
+				"梦醒时分",
+				"漠河舞厅",
+				"你的眼睛",
+				"千千阙歌",
+				"亲密爱人",
+				"气象站台",
+				"自作多情",
+				"相思成灾",
+				"执迷不悔",
+				"小城故事",
+				"类似爱情",
+				"写给黄淮",
+				"心有独钟",
+				"需要人陪",
+				"美梦成真",
+				"爱的初体验",
+				"爱就一个字",
+				"爱久见人心",
+				"爱要坦荡荡",
+				"不如这样吧",
+				"出现又离开",
+				"痴心换情深",
+				"当爱在靠近",
+				"多么想念你",
+				"寂寞在唱歌",
+				"可惜不是你",
+				"民谣在路上",
+				"你也没有错",
+				"其实都没有",
+				"如果没有你",
+				"突然的自我",
+				"外面的世界",
+				"没那么简单",
+				"爱与痛的边缘",
+				"三个人的晚餐",
+				"单人房双人床",
+				"寂寞的恋人啊",
+				"推开世界的门",
+				"我也不想这样",
+				"有可能的夜晚",
+				"找一个字代替",
+				"一百万个可能",
+				"等你等到我心痛",
+				"你就不要想起我",
+				"容易受伤的女人",
+				"我们没有在一起",
+				"我是一只小小鸟",
+				"午夜前的十分钟",
+				"一天一天等下去",
+				"原来你也在这里",
+				"这世界那么多人",
+				"热爱105℃的你",
+				"你知道我在等你吗",
+				"你喜欢不如我喜欢",
+				"爱我的人和我爱的人",
+			]
 
 			var flag = true;
 			var timer = null;
 			//
 			btn.onclick = function() {
-
+				openfile.style.display = 'none';
 				if (flag) {
 					timer = setInterval(function() {
 						var index = getRandom(student.length - 1, 0);
@@ -86,19 +212,28 @@
 
 				return Math.round(Math.random() * (max - min) + min);
 			}
-			
-			
+
+
 			var openFile = function(event) {
 				var input = event.target;
 				var reader = new FileReader();
 				reader.onload = function() {
-					if(reader.result) {
-						//写入元数据数组中
-						student = reader.result.split(/\s+/);
-						// student.push(reader.result);
-						openfile.style.display = 'none';
+					if (reader.result) {
+						if(student != null || student != ""){
+							student = [];
+						} else {
+							//写入元数据数组中
+							student = reader.result.split(/\s+/);
+							// student.push(reader.result);
+							openfile.style.display = 'none';
+						}
+					}
+					for (i = 0; i < student.length; i++) {
+						console.log(student[i]);
 					}
 				};
+
+
 				reader.readAsText(input.files[0]);
 			};
 		</script>
